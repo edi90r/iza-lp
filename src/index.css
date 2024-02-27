@@ -1,0 +1,11 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.collapse-custom {
+    @apply pe-4 ps-12;
+}
+
+.collapse-title-custom {
+    @apply after:-start-[1.4rem];
+}
