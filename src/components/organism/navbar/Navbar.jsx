@@ -46,7 +46,7 @@ const Navbar = ({ sectionRefs }) => {
                         <li>
                             <a
                                 className={`rounded-md border-darkBlue hover:bg-pureWhite hover:text-darkBlue hover:shadow-custom ${active ? 'bg-darkBlue text-pureWhite' : 'bg-pureWhite text-darkBlue'}`}
-                                href='https://admin.e-iza.pl/login'
+                                href='https://admin.e-iza.pl'
                             >
                                 Zaloguj
                             </a>

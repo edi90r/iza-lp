@@ -63,7 +63,7 @@ function App() {
                         variant='primary'
                         className='px-8 py-4'
                         tag='link'
-                        path='https://app.e-iza.pl/login'
+                        path='https://app.e-iza.pl'
                     >
                         Pobierz Aplikację
                     </Button>
