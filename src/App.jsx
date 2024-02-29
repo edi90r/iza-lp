@@ -59,7 +59,12 @@ function App() {
                     <Paragraph variant='tertiary' className='py-4 text-base font-700'>
                         Pobierz Aplikację Dzisiaj i Zacznij Odkrywać Swoje Nowe Możliwości!
                     </Paragraph>
-                    <Button variant='primary' className='px-8 py-4'>
+                    <Button
+                        variant='primary'
+                        className='px-8 py-4'
+                        tag='link'
+                        path='https://app.e-iza.pl/login'
+                    >
                         Pobierz Aplikację
                     </Button>
                     <LineRight className='absolute bottom-0 right-0' />
