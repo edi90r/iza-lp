@@ -10,7 +10,7 @@ const AuthActions = ({ children }) => {
         console.log('test');
         const resetPasswordPath = `/confirm-reset-password?oobCode=${oobCode}`;
 
-        return navigate(resetPasswordPath);
+        navigate(resetPasswordPath, { replace: true });
     }
 
     return children;
