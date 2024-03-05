@@ -7,6 +7,7 @@ const AuthActions = ({ children }) => {
     let oobCode = searchParams.get('oobCode');
 
     if (mode === 'resetPassword' && oobCode) {
+        console.log('test');
         const resetPasswordPath = `/confirm-reset-password?oobCode=${oobCode}`;
 
         return navigate(resetPasswordPath);
