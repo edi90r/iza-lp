@@ -29,8 +29,8 @@ const PasswordReset = () => {
         try {
             if (oobCode) {
                 await confirmThePasswordReset(oobCode, formFields.repeatPassword);
-                // const role = await checkUserRole(oobCode);
-                // setUserRole(role);
+                const role = await checkUserRole(oobCode);
+                setUserRole(role);
                 setFormFields(null);
                 setSuccessMessage(true);
             }
