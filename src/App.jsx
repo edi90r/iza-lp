@@ -13,7 +13,14 @@ const router = createBrowserRouter(
         <>
             <Route path='/' element={<Layout />} />
             <Route path='confirm-reset-password' element={<PasswordReset />} />
-            <Route path='auth/action' element={<AuthActions />} />
+            <Route
+                path='auth/action'
+                element={
+                    <AuthActions>
+                        <p>Loading</p>
+                    </AuthActions>
+                }
+            />
         </>,
     ),
 );
