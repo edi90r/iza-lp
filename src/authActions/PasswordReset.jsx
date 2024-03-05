@@ -18,7 +18,7 @@ const PasswordReset = () => {
         const { name, value } = event.currentTarget;
         setFormFields((formFields) => ({ ...formFields, [name]: value }));
     };
-
+    console.log(oobCode);
     const onSubmit = async (e) => {
         e.preventDefault();
 
