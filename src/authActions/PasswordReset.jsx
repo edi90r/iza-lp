@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { confirmThePasswordReset, checkUserRole } from '../utils/helpers';
+import { confirmThePasswordReset, checkUserRole, renderResetPasswordCopy } from '../utils/helpers';
 import Logo from '../components/atoms/logo/Logo';
 import FormInput from '../components/molecules/formInput/FormInput';
 import Button from '../components/atoms/button/Button';
-import { s } from 'vite/dist/node/types.d-jgA8ss1A';
 
 const PasswordReset = () => {
     const [formFields, setFormFields] = useState({});
@@ -15,10 +14,20 @@ const PasswordReset = () => {
 
     let oobCode = searchParams.get('oobCode');
 
-    const handleUserChange = (event) => {
+    const handleInputChange = (event) => {
         const { name, value } = event.currentTarget;
         setFormFields((formFields) => ({ ...formFields, [name]: value }));
     };
+
+    useEffect(() => {
+        async function checkUser() {
+            if (oobCode) {
+                const role = await checkUserRole(oobCode);
+                setUserRole(role);
+            }
+        }
+        checkUser();
+    }, [oobCode]);
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -30,8 +39,8 @@ const PasswordReset = () => {
         try {
             if (oobCode) {
                 await confirmThePasswordReset(oobCode, formFields.repeatPassword);
-                // const role = await checkUserRole(oobCode);
-                // setUserRole(role);
+                const role = await checkUserRole(oobCode);
+                setUserRole(role);
                 setFormFields(null);
                 setSuccessMessage(true);
             }
@@ -67,7 +76,9 @@ const PasswordReset = () => {
                 )}
                 {!successMessage && (
                     <>
-                        <h3 className='mt-8 pt-2 font-hind font-700'>Podaj nowe hasło</h3>
+                        <h3 className='mt-8 pt-2 font-hind font-700'>
+                            {renderResetPasswordCopy(userRole)}
+                        </h3>
                         <form onSubmit={onSubmit} className='flex w-full flex-col'>
                             <FormInput
                                 label='Hasło'
@@ -77,7 +88,7 @@ const PasswordReset = () => {
                                 register={() => {}}
                                 required={true}
                                 error={error}
-                                onChange={(e) => handleUserChange(e)}
+                                onChange={(e) => handleInputChange(e)}
                             />
 
                             <FormInput
@@ -88,7 +99,7 @@ const PasswordReset = () => {
                                 register={() => {}}
                                 required={true}
                                 error={error}
-                                onChange={(e) => handleUserChange(e)}
+                                onChange={(e) => handleInputChange(e)}
                             />
                             <Button type='submit' variant='primary' className='mt-8 w-full'>
                                 Resetuj hasło

@@ -9,7 +9,6 @@ const AuthActions = () => {
 
     useEffect(() => {
         if (mode === 'resetPassword' && oobCode) {
-            console.log('test');
             const resetPasswordPath = `/confirm-reset-password?oobCode=${oobCode}`;
             navigate(resetPasswordPath, { replace: true });
         }
