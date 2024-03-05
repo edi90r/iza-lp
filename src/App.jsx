@@ -12,7 +12,7 @@ const router = createBrowserRouter(
     createRoutesFromElements(
         <>
             <Route path='/' element={<Layout />} />
-            <Route path='confirm-reset-password/:oobCode' element={<PasswordReset />} />
+            <Route path='confirm-reset-password' element={<PasswordReset />} />
             <Route
                 path='auth/action'
                 element={
