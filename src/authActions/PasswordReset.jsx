@@ -10,8 +10,9 @@ const PasswordReset = () => {
     const [userRole, setUserRole] = useState('');
     const [error, setError] = useState({ message: '' });
     const [successMessage, setSuccessMessage] = useState(false);
+    const [searchParams] = useSearchParams();
 
-    let oobCode = useSearchParams().get('oobCode');
+    let oobCode = searchParams.get('oobCode');
 
     const handleUserChange = (event) => {
         const { name, value } = event.currentTarget;
@@ -63,7 +64,7 @@ const PasswordReset = () => {
                         </Button>
                     </>
                 )}
-
+                <h3 className='mt-8 pt-2 font-hind font-700'>Podaj nowe hasło</h3>
                 <form onSubmit={onSubmit} className='flex w-full flex-col'>
                     <FormInput
                         label='Hasło'
