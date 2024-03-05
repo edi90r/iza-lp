@@ -14,7 +14,7 @@ const router = createBrowserRouter(
             <Route path='/' element={<Layout />} />
             <Route path='confirm-reset-password/:oobCode' element={<PasswordReset />} />
             <Route
-                path='emulator/action'
+                path='auth/action'
                 element={
                     <AuthActions>
                         <p>Loading</p>
