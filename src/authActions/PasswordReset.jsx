@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { confirmThePasswordReset, checkUserRole } from '../utils/helpers';
-import Logo from '../../admin-panel/components/Atoms/Logo/Logo';
-import FormInput from '../../admin-panel/components/Molecules/FormInput/FormInput';
-import Button from '../../admin-panel/components/Atoms/Button/Button';
+import Logo from '../components/atoms/logo/Logo';
+import FormInput from '../components/molecules/formInput/FormInput';
+import Button from '../components/atoms/button/Button';
 
 const PasswordReset = () => {
     const [formFields, setFormFields] = useState({});
