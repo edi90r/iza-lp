@@ -1,6 +1,6 @@
 import { confirmPasswordReset, getAuth } from 'firebase/auth';
 import { collection, getDoc, where } from 'firebase/firestore';
-import { db } from './firebase';
+import { db } from '../firebase';
 
 export const handleClick = (event, sectionRefs, sectionId) => {
     event.preventDefault();
