@@ -4,6 +4,7 @@ import { confirmThePasswordReset, checkUserRole } from '../utils/helpers';
 import Logo from '../components/atoms/logo/Logo';
 import FormInput from '../components/molecules/formInput/FormInput';
 import Button from '../components/atoms/button/Button';
+import { s } from 'vite/dist/node/types.d-jgA8ss1A';
 
 const PasswordReset = () => {
     const [formFields, setFormFields] = useState({});
@@ -18,7 +19,7 @@ const PasswordReset = () => {
         const { name, value } = event.currentTarget;
         setFormFields((formFields) => ({ ...formFields, [name]: value }));
     };
-    console.log(oobCode);
+
     const onSubmit = async (e) => {
         e.preventDefault();
 
@@ -64,33 +65,37 @@ const PasswordReset = () => {
                         </Button>
                     </>
                 )}
-                <h3 className='mt-8 pt-2 font-hind font-700'>Podaj nowe hasło</h3>
-                <form onSubmit={onSubmit} className='flex w-full flex-col'>
-                    <FormInput
-                        label='Hasło'
-                        name='password'
-                        type='password'
-                        placeholder='Podaj hasło'
-                        register={() => {}}
-                        required={true}
-                        error={error}
-                        onChange={(e) => handleUserChange(e)}
-                    />
+                {!successMessage && (
+                    <>
+                        <h3 className='mt-8 pt-2 font-hind font-700'>Podaj nowe hasło</h3>
+                        <form onSubmit={onSubmit} className='flex w-full flex-col'>
+                            <FormInput
+                                label='Hasło'
+                                name='password'
+                                type='password'
+                                placeholder='Podaj hasło'
+                                register={() => {}}
+                                required={true}
+                                error={error}
+                                onChange={(e) => handleUserChange(e)}
+                            />
 
-                    <FormInput
-                        label='Powtórz hasło'
-                        name='repeatPassword'
-                        type='password'
-                        placeholder='Powtórz hasło'
-                        register={() => {}}
-                        required={true}
-                        error={error}
-                        onChange={(e) => handleUserChange(e)}
-                    />
-                    <Button type='submit' variant='primary' className='mt-8 w-full'>
-                        Resetuj hasło
-                    </Button>
-                </form>
+                            <FormInput
+                                label='Powtórz hasło'
+                                name='repeatPassword'
+                                type='password'
+                                placeholder='Powtórz hasło'
+                                register={() => {}}
+                                required={true}
+                                error={error}
+                                onChange={(e) => handleUserChange(e)}
+                            />
+                            <Button type='submit' variant='primary' className='mt-8 w-full'>
+                                Resetuj hasło
+                            </Button>
+                        </form>
+                    </>
+                )}
             </div>
         </div>
     );
