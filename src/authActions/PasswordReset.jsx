@@ -20,7 +20,7 @@ const PasswordReset = () => {
     };
 
     const onSubmit = async (e) => {
-        e.preventDegault();
+        e.preventDefault();
 
         if (formFields.password !== formFields.repeatPassword) {
             return setError({ message: 'Hasła nie są takie same' });
