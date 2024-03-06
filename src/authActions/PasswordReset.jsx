@@ -1,13 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { confirmThePasswordReset, checkUserRole, renderResetPasswordCopy } from '../utils/helpers';
+import { confirmThePasswordReset } from '../utils/helpers';
 import Logo from '../components/atoms/logo/Logo';
 import FormInput from '../components/molecules/formInput/FormInput';
 import Button from '../components/atoms/button/Button';
 
 const PasswordReset = () => {
     const [formFields, setFormFields] = useState({});
-    const [userRole, setUserRole] = useState('');
     const [error, setError] = useState({ message: '' });
     const [successMessage, setSuccessMessage] = useState(false);
     const [searchParams] = useSearchParams();
@@ -19,16 +18,6 @@ const PasswordReset = () => {
         setFormFields((formFields) => ({ ...formFields, [name]: value }));
     };
 
-    useEffect(() => {
-        async function checkUser() {
-            if (oobCode) {
-                const role = await checkUserRole(oobCode);
-                setUserRole(role);
-            }
-        }
-        checkUser();
-    }, [oobCode]);
-
     const onSubmit = async (e) => {
         e.preventDefault();
 
@@ -39,8 +28,6 @@ const PasswordReset = () => {
         try {
             if (oobCode) {
                 await confirmThePasswordReset(oobCode, formFields.repeatPassword);
-                const role = await checkUserRole(oobCode);
-                setUserRole(role);
                 setFormFields(null);
                 setSuccessMessage(true);
             }
@@ -62,23 +49,19 @@ const PasswordReset = () => {
                 {successMessage && (
                     <>
                         <h3 className='mt-8 pt-2 font-hind font-700'>Hasło zostało zresetowane</h3>
-                        <Button
-                            tag='link'
-                            path={
-                                userRole === 'user'
-                                    ? 'https://app.e-iza.pl/login'
-                                    : 'https://admin.e-iza.pl/login'
-                            }
-                        >
-                            Wróć do strony logowania
+                        <Button tag='link' path='https://app.e-iza.pl/login'>
+                            Wróć do strony głównej
                         </Button>
+                    </>
+                )}
+                {error && (
+                    <>
+                        <h3 className='mt-8 pt-2 font-hind font-700'>{error.message}</h3>
                     </>
                 )}
                 {!successMessage && (
                     <>
-                        <h3 className='mt-8 pt-2 font-hind font-700'>
-                            {renderResetPasswordCopy(userRole)}
-                        </h3>
+                        <h3 className='mt-8 pt-2 font-hind font-700'>Podaj nowe hasło do konta</h3>
                         <form onSubmit={onSubmit} className='flex w-full flex-col'>
                             <FormInput
                                 label='Hasło'
