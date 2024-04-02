@@ -64,6 +64,7 @@ const Layout = () => {
                         className='px-8 py-4'
                         tag='link'
                         path='https://app.e-iza.pl'
+                        disabled
                     >
                         Pobierz Aplikację
                     </Button>
